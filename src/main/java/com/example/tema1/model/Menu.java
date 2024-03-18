@@ -17,4 +17,6 @@ public class Menu {
     private String name;
     private Double pret;
     private Integer stoc;
+
+
 }

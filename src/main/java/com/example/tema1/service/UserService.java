@@ -20,14 +20,12 @@ public class UserService {
     public List<User> saveUsers(List<User> user){
         return userRepository.saveAll(user);
     }
-    public List<User> getUsers(){
-        return  userRepository.findAll();
-    }
+    public List<User> getUsers(){return  userRepository.findAll();}
     public User getUserById(int id){
         return  userRepository.findById(id).orElse(null);
     }
-    public User getUserByUsername(String username){
-        return  userRepository.findByUsername(username);
+    public User getUserByEmail(String email){
+        return  userRepository.findByEmail(email);
     }
     public String deleteUser(int id){
         userRepository.deleteById(id);
@@ -37,12 +35,11 @@ public class UserService {
         User existingUser= userRepository.findById(user.getId()).orElse(null);
         if(existingUser != null) {
             existingUser.setNume(user.getNume());
-            existingUser.setUsername(user.getUsername());
             existingUser.setParola(user.getParola());
+            existingUser.setEmail(user.getEmail());
             existingUser.setAdmin(user.isAdmin());
             return userRepository.save(existingUser);
         } else {
-
             throw new EntityNotFoundException("User not found with id: " + user.getId());
         }
     }

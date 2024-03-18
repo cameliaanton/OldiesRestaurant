@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
-
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user){
         return userService.saveUser(user);
@@ -31,15 +30,15 @@ public class UserController {
     public User getUserById (@PathVariable int id){
         return userService.getUserById(id);
     }
-    @GetMapping("/username/{username}")
-    public User getUserByUsername (@PathVariable String username){
-        return userService.getUserByUsername(username);
+    @GetMapping("/email/{email}")
+    public User getUserByEmail (@PathVariable String email){
+        return userService.getUserByEmail(email);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteUser (@PathVariable int id){
         return userService.deleteUser(id);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public User updateProduct (@PathVariable int id, @RequestBody User user){
         user.setId(id);
         return userService.updateUser(user);

@@ -10,12 +10,12 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/menu")
+@RequestMapping("/menu")
 @AllArgsConstructor
 public class MenuController {
     private final MenuService menuService;
 
-    @PostMapping("/addProduct")
+    @PostMapping("/add")
     public Menu addProduct(@RequestBody Menu menu){
         return menuService.saveMenu(menu);
     }

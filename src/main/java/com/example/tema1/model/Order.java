@@ -6,7 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name="t_order")
@@ -18,10 +21,12 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String orderNumber;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Menu> orderLineItemsList;
-    private long priceOrder;
-    private OrderStatus orderStatus = OrderStatus.COMANDA_NOUA;
+    //private String orderNumber;
+    @ElementCollection
+    private Map <Menu,Integer> orderItemsList;
+    private double priceOrder;
+    private OrderStatus orderStatus;
+    private LocalDateTime data;
+
 
 }

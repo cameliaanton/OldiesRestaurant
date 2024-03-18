@@ -46,4 +46,10 @@ public class MenuService {
             throw new EntityNotFoundException("Menu not found with id: " + menu.getId());
         }
     }
+
+    public Menu updateMenuItemStock(int id, int stock) {
+        Menu existingMenu= repository.findById(id).orElseThrow(()->new RuntimeException("Menu item not found"));
+        existingMenu.setStoc(stock);
+        return repository.save(existingMenu);
+    }
 }
